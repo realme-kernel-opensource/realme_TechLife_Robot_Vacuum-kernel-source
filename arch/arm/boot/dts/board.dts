@@ -1,0 +1,87 @@
+/*
+ * Allwinner Technology CO., Ltd. sun8iw18p1 soc board.
+ *
+ * soc board support.
+ */
+
+/dts-v1/;
+
+#include "sun8iw18p1.dtsi"
+#include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/input/input.h>
+/{
+
+	model = "sun8iw18 mr112 ld-robot";
+        compatible = "allwinner,sun8iw18p1";
+        interrupt-parent = <&wakeupgen>;
+        #address-cells = <2>; 
+        #size-cells = <2>; 
+
+	soc@03000000 {
+
+                gpio_ir_rx {
+                        compatible = "allwinner,gpio-ir-rx";
+                        gpio-rx = <&pio PB 0 6 1 1 1>;
+                        status = "disabled";
+                };  
+
+                gpio_ir_tx {
+                        compatible = "allwinner,gpio-ir-tx";
+                        gpio-tx = <&pio PB 1 1 1 1 1>;
+                        status = "disabled";
+                };  
+
+	};
+
+	cpu_opp_l_table0: opp_l_table0 {
+		compatible = "operating-points-v2";
+		opp-shared;
+
+		opp00 {
+			opp-hz = /bits/ 64 <720000000>;
+			opp-microvolt = <820000>;
+			clock-latency-ns = <2000000>;
+		};
+
+		opp01 {
+			opp-hz = /bits/ 64 <1008000000>;
+			opp-microvolt = <900000>;
+			clock-latency-ns = <2000000>;
+		};
+
+                opp02 {
+                        opp-hz = /bits/ 64 <1200000000>;
+                        opp-microvolt = <1000000>;
+                        axi-bus-divide-ratio = <3>;
+                        clock-latency-ns = <2000000>;
+                };
+
+                /*opp03 {
+                        opp-hz = /bits/ 64 <1512000000>;
+                        opp-microvolt = <1100000>;
+                        axi-bus-divide-ratio = <3>;
+                        clock-latency-ns = <2000000>;
+                };*/
+
+
+	};
+
+        keys {
+                compatible = "gpio-keys";
+                status = "okay";
+                wakeup {
+                        wakeup-source;
+                        gpios = <&pio PG 13 6 2 2 1>,<&pio PG 14 6 2 2 1>,<&pio PG 7 6 2 2 1>;
+                        label = "wakeup";
+                        linux,code = <KEY_WAKEUP>;
+                        //linux,code = <143>;
+                };
+        };
+};
+/*
+&spi1 {
+    compatible = "allwinner,spidev";
+    device_type = "spi1";
+    clock-frequency = <100000000>;
+    status = "okay";
+};*/

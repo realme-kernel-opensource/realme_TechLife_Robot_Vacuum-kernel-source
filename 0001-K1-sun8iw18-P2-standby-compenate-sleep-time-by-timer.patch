@@ -1,0 +1,331 @@
+From 99d199536d3b3b645eee670ded6d5e4ee84a5c45 Mon Sep 17 00:00:00 2001
+From: xuqiang <xuqiang@allwinnertech.com>
+Date: Sat, 22 Aug 2020 11:24:55 +0800
+Subject: [PATCH] K1:sun8iw18:P2:standby: compenate sleep time by timer.
+
+Change-Id: I9b1cbb4a701cc51a448eda618fff0d8797729a7a
+Signed-off-by: xuqiang <xuqiang@allwinnertech.com>
+---
+ arch/arm/boot/dts/sun8iw18p1.dtsi |   8 +-
+ drivers/soc/sunxi/Kconfig         |   9 ++
+ drivers/soc/sunxi/Makefile        |   1 +
+ drivers/soc/sunxi/pm_timer.c      | 172 ++++++++++++++++++++++++++++++
+ drivers/soc/sunxi/pm_timer.h      |  63 +++++++++++
+ 5 files changed, 252 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/soc/sunxi/pm_timer.c
+ create mode 100644 drivers/soc/sunxi/pm_timer.h
+
+diff --git a/arch/arm/boot/dts/sun8iw18p1.dtsi b/arch/arm/boot/dts/sun8iw18p1.dtsi
+index 23ee48a11262..0518523a213e 100644
+--- a/arch/arm/boot/dts/sun8iw18p1.dtsi
++++ b/arch/arm/boot/dts/sun8iw18p1.dtsi
+@@ -306,6 +306,7 @@
+ 					<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+ 		clock-frequency = <24000000>;
+ 		arm,cpu-registers-not-fw-configured;
++		arm,no-tick-in-suspend;
+ 		interrupt-parent = <&gic>;
+ 	};
+ 
+@@ -396,9 +397,9 @@
+ 			reg = <0x0 0x03009000 0x0 0x90>;
+ 			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clk_hosc>, <&clk_losc>;
++			status = "disabled";
+ 		};
+ 
+-
+ 		soc_timer1@03009000{
+ 			compatible = "allwinner,timer_alarm";
+ 			reg = <0x0 0x03009000 0x0 0x90>;
+@@ -406,6 +407,11 @@
+ 			wakeup-source;
+ 		};
+ 
++		pm_timer@03009000 {
++			compatible = "allwinner,pm_timer";
++			status = "okay";
++		};
++
+ 		rtc: rtc@07000000 {
+ 			compatible = "allwinner,sunxi-rtc";
+ 			device_type = "rtc";
+diff --git a/drivers/soc/sunxi/Kconfig b/drivers/soc/sunxi/Kconfig
+index fb5098ed0ca0..ef8dc3073d96 100644
+--- a/drivers/soc/sunxi/Kconfig
++++ b/drivers/soc/sunxi/Kconfig
+@@ -1,6 +1,15 @@
+ #
+ # Allwinner sunXi SoC drivers
+ #
++config SUNXI_SUSPEND_TIMER_COMPENSATE
++	bool "Using timer to compensate sleep time"
++	default n
++	depends on PM_SLEEP && ARCH_SUN8IW18
++	help
++	  This function will turn on timer0 to time the platform sleep
++	  and compensate to the system time.
++
++
+ menuconfig SOC_SUNXI
+ 	bool "SUNXI SoC drivers support"
+ 
+diff --git a/drivers/soc/sunxi/Makefile b/drivers/soc/sunxi/Makefile
+index 1f9a04c196c0..0a03e7a9e2cc 100644
+--- a/drivers/soc/sunxi/Makefile
++++ b/drivers/soc/sunxi/Makefile
+@@ -12,3 +12,4 @@ obj-y += sunxi-dump.o
+ obj-m += vf-test.o
+ obj-y += vf-table.o
+ obj-$(CONFIG_GPU_PM_DOMAINS) += pm_domains.o
++obj-${CONFIG_SUNXI_SUSPEND_TIMER_COMPENSATE} += pm_timer.o
+diff --git a/drivers/soc/sunxi/pm_timer.c b/drivers/soc/sunxi/pm_timer.c
+new file mode 100644
+index 000000000000..40312adedb24
+--- /dev/null
++++ b/drivers/soc/sunxi/pm_timer.c
+@@ -0,0 +1,172 @@
++/*
++ * drivers/soc/sunxi/pm_timer.c
++ * (C) Copyright 2017-2023
++ * Allwinner Technology Co., Ltd. <www.allwinnertech.com>
++ * fanqinghua <xuqiang@allwinnertech.com>
++ *
++ * This program is free software; you can redistribute it and/or
++ * modify it under the terms of the GNU General Public License as
++ * published by the Free Software Foundation; either version 2 of
++ * the License, or (at your option) any later version.
++ */
++
++#include <linux/module.h>
++#include <linux/suspend.h>
++#include <linux/syscore_ops.h>
++#include <linux/time.h>
++#include <linux/timekeeping.h>
++#include <linux/device.h>
++#include <linux/platform_device.h>
++#include <linux/of.h>
++
++#include "pm.h"
++#include "pm_timer.h"
++
++#define TIMER0   0x0
++#define TIMER1   0x1
++
++#define TIMER_BASE    0x03009000
++#define TIMER_INITVAL  0xffffffff
++
++#define TIMER_MODE_SEL      TIMER_MODE_SINGLE
++#define TIMER_SRC_SEL       TIMER_SRC_LOSC
++#define TIMER_CLKPRES_SEL   TIMER_CLKPRES128
++#define PM_USE_TIMERx       TIMER0
++
++
++static int pm_tmr_start(int ch)
++{
++	volatile  u32 tmp = 0;
++
++	/* config timer0 for mem */
++
++	tmp  = (TIMER_SRC_SEL << 2)  | (0x1 << 1);	/* clk src */
++	tmp |= (TIMER_MODE_SEL << 7) | (TIMER_CLKPRES_SEL << 4);	/* single mode | prescale */
++
++	writel(tmp, ioremap((TIMER_BASE + 0x10 + 0x10*ch), 4));
++
++	writel(TIMER_INITVAL, ioremap((TIMER_BASE + 0x14 + 0x10*ch), 4));
++
++	/* start */
++	writel(tmp|0x1, ioremap((TIMER_BASE + 0x10 + 0x10*ch), 4));
++
++	return 0;
++}
++
++static int pm_tmr_stop(int ch)
++{
++	volatile  u32 tmp = 0;
++
++	/* stop */
++	tmp  = readl(ioremap((TIMER_BASE + 0x10 + 0x10*ch), 4));
++	tmp &= ~0x1;
++	writel(tmp, ioremap((TIMER_BASE + 0x10 + 0x10*ch), 4));
++
++	return 0;
++}
++
++static u32 pm_tmr_count(int ch)
++{
++	volatile  u32 initval = readl(ioremap((TIMER_BASE + 0x14 + 0x10*ch), 4));
++	volatile  u32 curval = readl(ioremap((TIMER_BASE + 0x18 + 0x10*ch), 4));
++
++	pr_info("initval: %u\n", initval);
++	pr_info("curval: %u\n", curval);
++
++	if (initval > curval)
++		return (initval - curval);
++	else
++		return (TIMER_INITVAL - curval + initval);
++}
++
++
++int sunxi_pm_timer_timing(struct device *dev)
++{
++	pr_info("call  %s...\n", __func__);
++
++	pm_tmr_start(PM_USE_TIMERx);
++
++	return 0;
++}
++
++int sunxi_pm_timer_compensate(struct device *dev)
++{
++	struct timespec64 sleep_time = {0};
++
++	volatile u32 tmr_cnt  =  (u64)pm_tmr_count(PM_USE_TIMERx);
++	volatile u32 tmr_coef =  (TIMER_SRC_SEL == TIMER_SRC_LOSC) ? 250 : 187500;
++
++	pr_info("call  %s...\n", __func__);
++
++	pm_tmr_stop(PM_USE_TIMERx);
++
++	printk("--->tmr_cnt:  %u\n", tmr_cnt);
++	printk("--->tmr_coef:  %u\n", tmr_coef);
++
++	sleep_time.tv_sec  = tmr_cnt / tmr_coef;
++	sleep_time.tv_nsec = 0;
++
++	printk("--->sleeptime  sec: %lld\n", sleep_time.tv_sec);
++	printk("--->sleeptime nsec: %ld\n", sleep_time.tv_nsec);
++
++	if (sleep_time.tv_sec >= 0)
++		timekeeping_inject_sleeptime64(&sleep_time);
++
++	return 0;
++}
++
++int pm_timer_probe(struct platform_device *dev)
++{
++	pr_info("call  %s...\n", __func__);
++	return 0;
++}
++
++int pm_timer_remove(struct platform_device *dev)
++{
++	pr_info("call  %s...\n", __func__);
++	return 0;
++}
++
++static const struct of_device_id dt_ids[] = {
++	{.compatible = "allwinner,pm_timer"},
++	{},
++};
++
++
++const struct dev_pm_ops sunxi_pm_timer_ops = {
++	.suspend_late = sunxi_pm_timer_timing,
++	.resume_early = sunxi_pm_timer_compensate,
++};
++
++static struct platform_driver pm_timer_driver = {
++	.driver = {
++		   .name = "pm_timer",
++		   .pm = &sunxi_pm_timer_ops,
++		   .of_match_table = of_match_ptr(dt_ids),
++		   },
++	.probe = pm_timer_probe,
++	.remove = pm_timer_remove,
++};
++
++static int pm_timer_init(void)
++{
++	int ret;
++
++	ret = platform_driver_register(&pm_timer_driver);
++	if (ret)
++		pr_err("platform_driver_register() failed: %d\n", ret);
++
++	return ret;
++}
++
++static void pm_timer_exit(void)
++{
++	platform_driver_unregister(&pm_timer_driver);
++}
++
++module_init(pm_timer_init);
++module_exit(pm_timer_exit);
++MODULE_LICENSE("GPL");
++MODULE_AUTHOR("Frank & Martin");
++MODULE_DESCRIPTION("Allwinner pm timer");
++
+diff --git a/drivers/soc/sunxi/pm_timer.h b/drivers/soc/sunxi/pm_timer.h
+new file mode 100644
+index 000000000000..66abd7c7b4fb
+--- /dev/null
++++ b/drivers/soc/sunxi/pm_timer.h
+@@ -0,0 +1,63 @@
++/*
++ * drivers/soc/sunxi/pm_timer.h
++ * (C) Copyright 2017-2023
++ * Allwinner Technology Co., Ltd. <www.allwinnertech.com>
++ * fanqinghua <xuqiang@allwinnertech.com>
++ *
++ * This program is free software; you can redistribute it and/or
++ * modify it under the terms of the GNU General Public License as
++ * published by the Free Software Foundation; either version 2 of
++ * the License, or (at your option) any later version.
++ */
++
++#ifndef __AW_PM_TIMER_H_
++#define __AW_PM_TIMER_H_
++#include <asm/io.h>
++
++typedef struct __MEM_TMR_REG {
++	/*  offset:0x00 */
++	volatile __u32 IntCtl;
++	volatile __u32 IntSta;
++	volatile __u32 reserved0[2];
++	/*  offset:0x10 */
++	volatile __u32 Tmr0Ctl;
++	volatile __u32 Tmr0IntVal;
++	volatile __u32 Tmr0CntVal;
++	volatile __u32 reserved1;
++	/*  offset:0x20 */
++	volatile __u32 Tmr1Ctl;
++	volatile __u32 Tmr1IntVal;
++	volatile __u32 Tmr1CntVal;
++	volatile __u32 reserved2;
++	/*  offset:0x30 */
++	volatile __u32 Tmr2Ctl;
++	volatile __u32 Tmr2IntVal;
++	volatile __u32 Tmr2CntVal;
++	volatile __u32 reserved3;
++} __mem_tmr_reg_t;
++
++
++enum {
++	TIMER_MODE_CONTINUE,
++	TIMER_MODE_SINGLE,
++};
++
++enum {
++	TIMER_SRC_LOSC,
++	TIMER_SRC_OSC24M,
++};
++
++enum {
++	TIMER_CLKPRES1,
++	TIMER_CLKPRES2,
++	TIMER_CLKPRES4,
++	TIMER_CLKPRES8,
++	TIMER_CLKPRES16,
++	TIMER_CLKPRES32,
++	TIMER_CLKPRES64,
++	TIMER_CLKPRES128,
++};
++
++
++#endif
++
+-- 
+2.28.0
+

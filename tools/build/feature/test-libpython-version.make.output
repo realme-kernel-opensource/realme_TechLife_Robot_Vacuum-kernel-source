@@ -1,0 +1,5 @@
+In file included from /home/hfh/aw_mr112_sdk/out/host/include/python2.7/Python.h:61:0,
+                 from test-libpython-version.c:1:
+/home/hfh/aw_mr112_sdk/out/host/include/python2.7/pyport.h:895:2: error: #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+ #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc config?)."
+  ^~~~~

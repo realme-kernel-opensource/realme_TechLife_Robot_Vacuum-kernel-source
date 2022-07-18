@@ -1,0 +1,4 @@
+test-get_cpuid.c:1:19: fatal error: cpuid.h: No such file or directory
+ #include <cpuid.h>
+                   ^
+compilation terminated.

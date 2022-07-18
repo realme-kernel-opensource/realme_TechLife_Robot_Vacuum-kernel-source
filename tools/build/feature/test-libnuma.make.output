@@ -1,0 +1,4 @@
+test-libnuma.c:1:18: fatal error: numa.h: No such file or directory
+ #include <numa.h>
+                  ^
+compilation terminated.

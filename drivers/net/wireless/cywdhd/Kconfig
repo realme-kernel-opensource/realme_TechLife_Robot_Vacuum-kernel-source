@@ -1,0 +1,27 @@
+config CYWDHD
+	tristate "Cypress FullMAC wireless cards support"
+	---help---
+	  This module adds support for wireless adapters based on
+	  Broadcom FullMAC chipset.
+
+config BCMDHD_FW_PATH
+	depends on CYWDHD
+	string "Firmware path"
+	default "/lib/firmware/cyw43438.bin"
+	---help---
+	  Path to the firmware file.
+
+config BCMDHD_NVRAM_PATH
+	depends on CYWDHD
+	string "NVRAM path"
+	default "/lib/firmware/nvram.txt"
+	---help---
+	  Path to the calibration file.
+
+config BCMDHD_WEXT
+	bool "Enable WEXT support"
+	depends on CYWDHD && CFG80211 = n
+	select WIRELESS_EXT
+	select WEXT_PRIV
+	help
+	  Enables WEXT support

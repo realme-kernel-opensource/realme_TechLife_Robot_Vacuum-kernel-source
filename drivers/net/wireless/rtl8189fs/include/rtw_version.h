@@ -1,0 +1,1 @@
+#define DRIVERVERSION	"v5.7.8_33806.20200611_beta_patch"

@@ -1,0 +1,4 @@
+test-lzma.c:1:18: fatal error: lzma.h: No such file or directory
+ #include <lzma.h>
+                  ^
+compilation terminated.

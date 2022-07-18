@@ -1,0 +1,4 @@
+test-numa_num_possible_cpus.c:1:18: fatal error: numa.h: No such file or directory
+ #include <numa.h>
+                  ^
+compilation terminated.

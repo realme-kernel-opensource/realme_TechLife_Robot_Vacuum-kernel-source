@@ -1,0 +1,632 @@
+In file included from /home/hfh/aw_mr112_sdk/prebuilt/gcc/linux-x86/arm/toolchain-sunxi-glibc/toolchain/lib/gcc/arm-openwrt-linux-gnueabi/6.4.1/include/stdint.h:9:0,
+                 from /usr/lib/x86_64-linux-gnu/perl/5.22/CORE/perl.h:727,
+                 from test-libperl.c:2:
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h: In function 'S_perl_hash_siphash_2_4':
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:207:25: error: large integer implicitly truncated to unsigned type [-Werror=overflow]
+   U64TYPE v0 = UINT64_C(0x736f6d6570736575);
+                         ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:208:25: error: large integer implicitly truncated to unsigned type [-Werror=overflow]
+   U64TYPE v1 = UINT64_C(0x646f72616e646f6d);
+                         ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:209:25: error: large integer implicitly truncated to unsigned type [-Werror=overflow]
+   U64TYPE v2 = UINT64_C(0x6c7967656e657261);
+                         ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:210:25: error: large integer implicitly truncated to unsigned type [-Werror=overflow]
+   U64TYPE v3 = UINT64_C(0x7465646279746573);
+                         ^
+In file included from /usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv.h:629:0,
+                 from /usr/lib/x86_64-linux-gnu/perl/5.22/CORE/perl.h:3742,
+                 from test-libperl.c:2:
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:219:30: error: left shift count >= width of type [-Werror=shift-count-overflow]
+   b = ( ( U64TYPE )(inlen) ) << 56;
+                              ^~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:189:23: error: left shift count >= width of type [-Werror=shift-count-overflow]
+    ((U64TYPE)((p)[4]) << 32) | \
+                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:227:9: note: in expansion of macro 'U8TO64_LE'
+     m = U8TO64_LE( in );
+         ^~~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:190:23: error: left shift count >= width of type [-Werror=shift-count-overflow]
+    ((U64TYPE)((p)[5]) << 40) | \
+                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:227:9: note: in expansion of macro 'U8TO64_LE'
+     m = U8TO64_LE( in );
+         ^~~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:191:23: error: left shift count >= width of type [-Werror=shift-count-overflow]
+    ((U64TYPE)((p)[6]) << 48) | \
+                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:227:9: note: in expansion of macro 'U8TO64_LE'
+     m = U8TO64_LE( in );
+         ^~~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:192:23: error: left shift count >= width of type [-Werror=shift-count-overflow]
+    ((U64TYPE)((p)[7]) << 56))
+                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:227:9: note: in expansion of macro 'U8TO64_LE'
+     m = U8TO64_LE( in );
+         ^~~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:18: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:229:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:229:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:229:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:197:18: note: in expansion of macro 'ROTL64'
+     v2 += v3; v3=ROTL64(v3,16); v3 ^= v2;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:229:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:198:18: note: in expansion of macro 'ROTL64'
+     v0 += v3; v3=ROTL64(v3,21); v3 ^= v0;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:229:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:18: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:229:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:229:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:229:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:18: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:230:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:230:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:230:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:197:18: note: in expansion of macro 'ROTL64'
+     v2 += v3; v3=ROTL64(v3,16); v3 ^= v2;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:230:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:198:18: note: in expansion of macro 'ROTL64'
+     v0 += v3; v3=ROTL64(v3,21); v3 ^= v0;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:230:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:18: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:230:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:230:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:230:5: note: in expansion of macro 'SIPROUND'
+     SIPROUND;
+     ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:236:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+   case 7: b |= ( ( U64TYPE )in[ 6] )  << 48;
+                                       ^~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:237:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+   case 6: b |= ( ( U64TYPE )in[ 5] )  << 40;
+                                       ^~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:238:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+   case 5: b |= ( ( U64TYPE )in[ 4] )  << 32;
+                                       ^~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:18: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:247:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:247:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:247:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:197:18: note: in expansion of macro 'ROTL64'
+     v2 += v3; v3=ROTL64(v3,16); v3 ^= v2;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:247:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:198:18: note: in expansion of macro 'ROTL64'
+     v0 += v3; v3=ROTL64(v3,21); v3 ^= v0;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:247:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:18: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:247:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:247:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:247:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:18: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:248:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:248:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:248:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:197:18: note: in expansion of macro 'ROTL64'
+     v2 += v3; v3=ROTL64(v3,16); v3 ^= v2;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:248:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:198:18: note: in expansion of macro 'ROTL64'
+     v0 += v3; v3=ROTL64(v3,21); v3 ^= v0;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:248:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:18: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:248:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:248:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:248:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:18: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:252:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:252:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:252:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:197:18: note: in expansion of macro 'ROTL64'
+     v2 += v3; v3=ROTL64(v3,16); v3 ^= v2;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:252:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:198:18: note: in expansion of macro 'ROTL64'
+     v0 += v3; v3=ROTL64(v3,21); v3 ^= v0;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:252:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:18: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:252:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:252:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:252:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:18: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:253:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:253:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:253:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:197:18: note: in expansion of macro 'ROTL64'
+     v2 += v3; v3=ROTL64(v3,16); v3 ^= v2;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:253:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:198:18: note: in expansion of macro 'ROTL64'
+     v0 += v3; v3=ROTL64(v3,21); v3 ^= v0;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:253:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:18: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:253:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:253:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:253:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:18: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:254:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:254:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:254:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:197:18: note: in expansion of macro 'ROTL64'
+     v2 += v3; v3=ROTL64(v3,16); v3 ^= v2;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:254:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:198:18: note: in expansion of macro 'ROTL64'
+     v0 += v3; v3=ROTL64(v3,21); v3 ^= v0;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:254:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:18: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:254:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:254:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:254:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:18: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:255:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:255:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:196:46: note: in expansion of macro 'ROTL64'
+     v0 += v1; v1=ROTL64(v1,13); v1 ^= v0; v0=ROTL64(v0,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:255:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:197:18: note: in expansion of macro 'ROTL64'
+     v2 += v3; v3=ROTL64(v3,16); v3 ^= v2;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:255:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:198:18: note: in expansion of macro 'ROTL64'
+     v0 += v3; v3=ROTL64(v3,21); v3 ^= v0;     \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:255:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:18: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                  ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:255:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:39: error: left shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                       ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:255:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:157:59: error: right shift count >= width of type [-Werror=shift-count-overflow]
+     #define ROTL64(x,r)  (((U64TYPE)x << r) | ((U64TYPE)x >> (64 - r)))
+                                                           ^
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:199:46: note: in expansion of macro 'ROTL64'
+     v2 += v1; v1=ROTL64(v1,17); v1 ^= v2; v2=ROTL64(v2,32); \
+                                              ^~~~~~
+/usr/lib/x86_64-linux-gnu/perl/5.22/CORE/hv_func.h:255:3: note: in expansion of macro 'SIPROUND'
+   SIPROUND;
+   ^~~~~~~~
+cc1: all warnings being treated as errors

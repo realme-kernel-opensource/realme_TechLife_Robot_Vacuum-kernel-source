@@ -1,0 +1,40 @@
+#
+# Allwinner sunXi SoC drivers
+#
+config SUNXI_SUSPEND_TIMER_COMPENSATE
+	bool "Using timer to compensate sleep time"
+	default n
+	depends on PM_SLEEP && ARCH_SUN8IW18
+	help
+	  This function will turn on timer0 to time the platform sleep
+	  and compensate to the system time.
+
+
+menuconfig SOC_SUNXI
+	bool "SUNXI SoC drivers support"
+
+if SOC_SUNXI
+
+config SUNXI_SRAM
+	tristate "Sunxi sram support"
+	help
+	  Say y here to enable the SRAM controller support. This
+	  device is responsible on mapping the SRAM in the sunXi SoCs
+	  whether to the CPU/DMA, or to the devices.
+
+config SUNXI_SUSPEND
+	tristate "Sunxi suspend support"
+	default ARCH_SUNXI
+	depends on PM_SLEEP
+	help
+	  Say y here to enable the sunxi standby support.
+
+config SUNXI_SUSPEND_NONARISC
+	tristate "Sunxi suspend support without arisc"
+	depends on SUNXI_SUSPEND && !SUNXI_ARISC
+	default !SUNXI_ARISC
+	help
+	  Say y here to enter standby without arisc.
+
+source "drivers/soc/sunxi/arisc/Kconfig"
+endif # SOC_SUNXI

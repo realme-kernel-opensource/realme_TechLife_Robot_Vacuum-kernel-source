@@ -1,0 +1,4 @@
+test-sdt.c:1:21: fatal error: sys/sdt.h: No such file or directory
+ #include <sys/sdt.h>
+                     ^
+compilation terminated.

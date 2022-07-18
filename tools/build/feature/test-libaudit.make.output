@@ -1,0 +1,4 @@
+test-libaudit.c:1:22: fatal error: libaudit.h: No such file or directory
+ #include <libaudit.h>
+                      ^
+compilation terminated.

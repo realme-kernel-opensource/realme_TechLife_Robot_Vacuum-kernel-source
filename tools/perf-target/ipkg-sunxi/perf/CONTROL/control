@@ -1,0 +1,9 @@
+Package: perf
+Version: 4.9.118-2
+Depends: libc, libssp, librt, libpthread, libelf1, libdw, libunwind, libpthread, librt, objdump
+Source: package/devel/perf
+Section: devel
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: sunxi
+Installed-Size: 691263
+Description:  perf is the Linux performance monitoring tool

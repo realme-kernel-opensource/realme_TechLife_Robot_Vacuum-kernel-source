@@ -1,0 +1,108 @@
+#
+# Makefile fragment for Rdamicro 802.11 Networking Device Driver
+#
+# Copyright (c) 2014 Rdamicro Corporation
+#
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+# SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+# OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+# CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+ccflags-y += \
+	-I$(src)/../include
+
+ccflags-y += -D__CHECK_ENDIAN__
+
+EXTRA_LDFLAGS += --strip-debug
+EXTRA_CFLAGS +=-Wno-error=date-time
+EXTRA_CFLAGS +=-Wno-date-time
+
+#ccflags-y += -DWLAND_AMLOGIC_PLATFORM_SUPPORT
+#ccflags-y += -DWLAND_HISILICON_PLATFORM_SUPPORT
+#ccflags-y += -DWLAND_FIBERHOME_SUPPORT
+
+export CONFIG_RDAWFMAC = m
+export CONFIG_RDAWFMAC_SDIO = y
+#export CONFIG_RDAWFMAC_USB = y
+export CONFIG_RDAWDBG = y
+#export CONFIG_RDAWDBG_FILE = y
+#export CONFIG_SMART_CONFIG = y
+#export CONFIG_ANDOIRD8_OR_HIGHER = y
+
+ifeq ($(CONFIG_ANDOIRD8_OR_HIGHER),y)
+ccflags-y += -DWLAND_ANDOIRD8_OR_HIGHER
+endif
+
+ifeq ($(CONFIG_SMART_CONFIG),y)
+ccflags-y += -DWLAND_SMART_CONFIG_SUPPORT
+endif
+
+ifeq ($(CONFIG_RDAWFMAC_SDIO),y)
+ccflags-y += -DCONFIG_RDAWFMAC_SDIO
+endif
+
+ifeq ($(CONFIG_RDAWFMAC_USB),y)
+ccflags-y += -DCONFIG_RDAWFMAC_USB
+endif
+
+ifeq ($(CONFIG_RDAWDBG),y)
+ccflags-y += -DDEBUG
+endif
+
+ifeq ($(CONFIG_RDAWDBG_FILE),y)
+ccflags-y += -DDEBUG_FILE
+endif
+
+MODULE_NAME = rdawfmac
+
+ifneq ($(KERNELRELEASE),)
+obj-$(CONFIG_RDAWFMAC) += $(MODULE_NAME).o
+rdawfmac-objs += \
+	wland_p2p.o \
+	wland_dbg.o \
+	wland_d11.o \
+	wland_nvram.o \
+	wland_utils.o \
+	wland_trap.o \
+	wland_bus.o \
+	wland_cmds.o \
+	wland_fwsmgr.o \
+	wland_wid.o \
+	wland_fweh.o \
+	wland_linux.o \
+	wland_cfg80211.o \
+	wland_android.o \
+	wland_rx.o \
+	wland_rf.o \
+	wland_amsdu.o
+
+rdawfmac-$(CONFIG_RDAWFMAC_SDIO) += \
+	wland_sdio.o \
+	wland_sdmmc.o
+
+rdawfmac-$(CONFIG_RDAWFMAC_USB) += \
+	wland_usb.o
+else
+all: modules
+
+modules:
+	$(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KSRC) M=$(shell pwd)  modules
+
+install:
+	install -p -m 644 $(MODULE_NAME).ko  $(MODDESTDIR)
+
+uninstall:
+	rm -f $(MODDESTDIR)/$(MODULE_NAME).ko
+
+.PHONY: modules clean
+
+clean:
+	rm -rf *.o *.ko  .wland* Module*  .tmp* .linux*  module* .rdawfmac.ko.cmd .rdawfmac.mod.o.cmd .rdawfmac.o.cmd rdawfmac.mod.c
+endif
